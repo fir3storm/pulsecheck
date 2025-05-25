@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PulseCheck Result</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <header>
+        <h1>PulseCheck</h1>
+        <p class="tagline">Health Check Result</p>
+    </header>
+    <main>
+        <div class="card">
+            <h3>Basic Website Info</h3>
+            <ul>
+                <li><strong>URL:</strong> {{ result.url }}</li>
+                <li><strong>Website Title:</strong> {{ result.title }}</li>
+                <li><strong>DNS:</strong> {{ result.dns }}</li>
+                <li><strong>HTTP Status:</strong> {{ result.http_status }}</li>
+                <li><strong>Response Time:</strong> {{ result.response_time }}</li>
+                <li><strong>SSL Validity:</strong> {{ result.ssl_valid }}</li>
+            </ul>
+
+            <h3>HTTP Headers</h3>
+            <ul>
+                {% for key, value in result.headers.items() %}
+                    <li><strong>{{ key }}:</strong> {{ value }}</li>
+                {% endfor %}
+            </ul>
+
+            <h3>Redirect Chain</h3>
+            <ul>
+                {% for r in result.redirects %}
+                    <li>{{ r }}</li>
+                {% endfor %}
+            </ul>
+
+            <a href="/" class="back-button">← Check Another</a>
+        </div>
+    </main>
+    <footer>
+        © 2025 PulseCheck · All rights reserved.
+    </footer>
+</body>
+</html>
